@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vélo'V</title>
+    <link rel="icon" type="image/x-icon" href="img/logo/logo.ico"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">
+    <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- appel de la map -->
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <!-- Appel de la librairie des clusters pour les markers -->
+    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css">
+    <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container-header">
+            <h1 class="title">Vélo'V</h1>
+        <br>
+            <p class="description">Bienvenue sur le site de Vélo'V, un site vous permettant de réserver un vélo afin de parcourir la ville de Lyon. Chaque stations est desservie par JCDecaux. </p>
+        </div>
+    </header>
+
+    <section id="diapo">
+        <div id="container-slider">
+            <div id="button-pause" class="pause button-pause"></div>
+            <div id="button-prev" class="command command-prev">
+                <i class="fas fa-angle-left"></i>
+            </div>
+            <div id="button-next" class="command command-next">
+                <i class="fas fa-angle-right"></i>
+            </div>
+            <div id="slider">
+                <!-- diapositive 1 -->
+                <figure class="diapositive">
+                    <img src="img/diapo1.jpg" alt="velib">
+                    <figcaption>1 - Choisissez une station de vélo sur la carte ci dessous. <i class="fas fa-arrow-down"></i></figcaption>
+                </figure>
+
+                <!-- diapositive 2 -->
+                <figure class="diapositive">
+                    <img src="img/diapo3.jpg" alt="velib">
+                    <figcaption>2 - Assurez vous de la disponibilité des vélos. <i class="fas fa-bicycle"></i> </figcaption>
+                </figure>
+
+                <!-- diapositive 3 -->
+                <figure class="diapositive">
+                    <img src="img/diapo2.jpg" alt="velib">
+                    <figcaption>3 - Cliquez sur le bouton "Réservez". <i class="fas fa-hand-point-up"></i> </figcaption>
+                </figure>
+                <!-- diapositive 4 -->
+                <figure class="diapositive">
+                    <img src="img/diapo4.jpg" alt="velib">
+                    <figcaption>4 - Ajoutez votre signature dans le cadre réservé à cet effet <i class="fas fa-edit"></i> puis validez.</figcaption>
+                </figure>
+                <!-- diapositive 5 -->
+                <figure class="diapositive">
+                    <img src="img/diapo5.jpg" alt="velib">
+                    <figcaption>5 - Félicitations ! Votre vélo est réservé et est valide pendant 20 mins. <i class="fas fa-thumbs-up"></i> </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <aside>
+        <div class="bandeau">
+            <a href="#carte-location" class="arrow"><i class="fas fa-arrow-down"></i></a> 
+        </div>
+    </aside>
+
+    <section id="carte-location">
+        <div id="map" class="map"></div>
+        <div class="infos">
+            <div id="information-velo">
+                <h2 class="titre-resa">Informations sur les stations</h2>
+                <br>
+                <p class="clic-marker">Cliquez sur un marker pour <br> afficher les détails d'une station.</p>
+                <br>
+                <i class="fas fa-arrow-down"></i>
+                <div id="case-info">
+                    <br>
+                    <p id="name-data"></p>
+                    <p class="address-data">Adresse : <span id="address-data"></span></p>
+                    <p class="statut-data">Statut de la station : <span id="statut-data"></span></p>
+                    <p class="velo-data">Nombre de vélos disponibles : <span id="velo-data"></span></p>
+                    <br>
+                    <button id="reserve">Réservez</button>
+                    <div id="help"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section class="reservation">
+        <div id="container-canvas">
+            <h2>Remplissez le formulaire</h2>
+            <br>
+            <form action="/" method="get">
+                <p>
+                    <label for="first-name">Nom : </label>
+                    <input type="text" name="first-name" id="first-name" placeholder="Nom" required>
+                </p>
+                <p>
+                    <br>
+                    <label for="name">Prénom : </label>
+                    <input type="text" name="name" id="name" placeholder="Prénom" required>
+                </p>
+                <p>
+                    <label>Signature : </label>
+                    <canvas id="canvas" height="200" width="300">
+                        Désolé, votre navigateur ne prend pas en charge &lt;canvas&gt;.
+                    </canvas>
+                </p>
+                <button type="reset" id="reset">Recommencez</button>
+                <button type="button" id="valider">Validez</button>
+                <button type="reset" id="annuler">Annuler</button>
+            </form>
+        </div>
+        <div id="mess-info">
+            <p class="message"> <span id="mess-timer"></span> <span id="timing"></span>
+            </p>
+        </div>
+    </section>
+        
+
+    <footer>
+        <div class="info-footer">
+            <h3>Vélo'V</h3>
+            <p class="copyright">Copyright © Elodie Meunier. Tous droits réservés. </p>
+        </div>
+    </footer>
+
+    <script src="js/ajax.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/diapo.js"></script>
+    <script src="js/save.js"></script>
+</body>
+</html>
