@@ -2,17 +2,20 @@ Projet 3 = Concevez une carte interactive de location de vélos
 (Projet à réaliser dans le cadre de la formation "Développeur web junior")
 
 En quoi consiste ce projet ? 
+
 Vous devez développer une page de type "Single page Application" simulant la réservation de vélos dans une ville. Ces vélos sont répartis dans de nombreuses stations dans la ville. L'utilisateur doit pouvoir réserver un vélo depuis son navigateur (à condition qu'il reste des vélos disponibles à la station !). La réservation est alors temporairement enregistrée sur le navigateur du visiteur.
 Cette application doit notamment, en s'appuyant sur JavaScript, afficher une carte avec la liste des stations de location de vélos disponibles dans la ville. 
 
 Instructions
 
 Diaporama
+
 Vous devez afficher en haut de la page un diaporama de photos et de textes expliquant le fonctionnement de l'application. La logique du diaporama doit être écrite par vos soins. L’utilisation de tout plugin automatisant la logique de l’application est proscrite.
 
 Le diaporama passe automatiquement à la diaporama suivante toutes les 5 secondes. L’utilisateur peut toutefois choisir de mettre le diaporama en pause. Il peut également reculer ou avancer manuellement à l’aide d’un clic de souris, ainsi qu’avec les touches gauche et droite de son clavier.
 
 Carte des vélos
+
 En-­dessous du diaporama se trouve une carte affichant en temps réel la liste des stations de location de vélos ainsi que leur disponibilité.  La localisation de toutes les stations de vélos est affichée à l’aide de marqueurs.
 La localisation et l'état de chaque station (ouverte, en travaux, combien de vélos et de places sont disponibles, etc.) est fourni via la plateforme OpenData de JC Decaux.
 Les données doivent provenir de l'API temps réel.
@@ -20,6 +23,7 @@ Un clic sur un marqueur affiche l’état de la station dans un panneau construi
 La carte doit être générée dynamiquement via un service de cartographie.
 
 Réservation d'un vélo
+
 Il doit être possible de réserver un vélo disponible à la station sélectionnée en :
 
 1. indiquant son nom et son prénom,
@@ -33,6 +37,7 @@ Le nom et le prénom sont toutefois conservés par le navigateur pour prérempli
 Il ne peut y avoir qu'une réservation à la fois. Si une nouvelle réservation a lieu, elle remplace la précédente.
 
 Contraintes techniques
+
 Le code JavaScript doit être conçu en Programmation Orientée Objet
 
 Vous pouvez vous appuyer sur :
